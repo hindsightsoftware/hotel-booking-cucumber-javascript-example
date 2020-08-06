@@ -1,0 +1,16 @@
+{
+  "name": "hotel-booking-cucumber-javascript-example",
+  "version": "1.0.0",
+  "description": "Example project showing you how to use Cucumber with the Hotel Booking app to create living documentation",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/cucumber-js"
+  },
+  "author": "Hindsight Software",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "cucumber": "^6.0.5"
+  }
+}
