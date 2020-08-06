@@ -4,10 +4,10 @@
   "description": "Example project showing you how to use Cucumber with the Hotel Booking app to create living documentation",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/cucumber-js"
+    "test": "./node_modules/.bin/cucumber-js -f json:reports/cucumber.json"
   },
   "author": "Hindsight Software",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",

@@ -11,8 +11,8 @@ function getToken() {
     const result = chai.request(BASE_URL)
         .post('/login')
         .set('Content-type', 'application/json')
-        .send({ username: 'admin', password: 'password123'})
-        .then(function(res) {
+        .send({ username: 'admin', password: 'password123' })
+        .then(function (res) {
             return JSON.parse(res.text).token
         })
     return result
@@ -25,7 +25,7 @@ let lastBookingId = 0;
 
 Given('a user wants to make a booking with the following details', function (dataTable) {
     const data = dataTable.raw()[0]
-    
+
     requestBody.firstname = data[0]
     requestBody.lastname = data[1]
     requestBody.totalprice = data[2]
@@ -39,7 +39,7 @@ Given('a user wants to make a booking with the following details', function (dat
 
 When('the booking is submitted by the user', async function () {
     const token = await getToken()
-   
+
     response = await chai.request(BASE_URL)
         .post('/api/booking')
         .set('Content-Type', 'application/json')
@@ -57,7 +57,7 @@ Then('shown to the user as stored', function () {
 
 Given('Hotel Booking has existing bookings', async function () {
     const token = await getToken()
-    
+
     requestBody.firstname = 'rose';
     requestBody.lastname = 'boylu';
     requestBody.totalprice = 10;
@@ -73,13 +73,13 @@ Given('Hotel Booking has existing bookings', async function () {
         .set('Content-Type', 'application/json')
         .set('Authorization', 'Bearer ' + token)
         .send(requestBody)
-    
+
     expect(response).to.have.property('status').to.be.equal(200)
     expect(response.body).to.have.property('id')
 
     let bookingId = response.body.id
     expect(bookingId).to.be.at.least(1)
-    lastBookingId = bookingId 
+    lastBookingId = bookingId
 });
 
 
@@ -95,20 +95,20 @@ When('a specific booking is requested by the user', async function () {
 });
 
 Then('the booking is shown', function () {
-   expect(response.body).to.have.property('firstname')
-   expect(response.body).to.have.property('lastname')
-   expect(response.body).to.have.property('totalprice')
-   expect(response.body).to.have.property('depositpaid')
-   expect(response.body).to.have.property('bookingdates')
-   expect(response.body).to.have.property('additionalneeds')
+    expect(response.body).to.have.property('firstname')
+    expect(response.body).to.have.property('lastname')
+    expect(response.body).to.have.property('totalprice')
+    expect(response.body).to.have.property('depositpaid')
+    expect(response.body).to.have.property('bookingdates')
+    expect(response.body).to.have.property('additionalneeds')
 
-   expect(response.body.bookingdates).to.have.property('checkin')
-   expect(response.body.bookingdates).to.have.property('checkout')
+    expect(response.body.bookingdates).to.have.property('checkin')
+    expect(response.body.bookingdates).to.have.property('checkout')
 });
 
 When('a specific booking is updated by the user', async function () {
     const token = await getToken()
-    
+
     requestBody.firstname = 'Matus';
     requestBody.lastname = 'Novak';
     requestBody.totalprice = 30;
@@ -124,7 +124,7 @@ When('a specific booking is updated by the user', async function () {
         .set('Authorization', 'Bearer ' + token)
         .set('Content-Type', 'application/json')
         .send(requestBody)
-    
+
     expect(response).to.have.property('status').to.be.equal(200)
 });
 
@@ -143,7 +143,7 @@ When('a specific booking is deleted by the user', async function () {
         .delete(`/api/booking/${lastBookingId}`)
         .set('Authorization', 'Bearer ' + token)
         .set('Content-Type', 'application/json')
-    
+
     expect(response).to.have.property('status').to.be.equal(200)
 });
 
