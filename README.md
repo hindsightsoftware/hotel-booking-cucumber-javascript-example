@@ -1,5 +1,7 @@
 # Hotel Booking Cucumber JavaScript example
 
+[![CircleCI](https://circleci.com/gh/hindsightsoftware/hotel-booking-cucumber-javascript-example.svg?style=svg)](https://circleci.com/gh/hindsightsoftware/hotel-booking-cucumber-javascript-example)
+
 ## Usage
 
 First, run the [Hotel Booking app](https://github.com/hindsightsoftware/hotel-booking). The easiest way is to do it via Docker as shown below. This will start the app that can be accessed at <http://localhost:8080>
